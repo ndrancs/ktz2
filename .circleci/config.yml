@@ -3,6 +3,9 @@ jobs:
   compile:
    docker:
       - image: ndrancs/kuali:latest
+        auth:
+           username: $udock
+           password: $pdock
    steps:
       - run:
           command: |
@@ -15,3 +18,10 @@ workflows:
   cooking:
     jobs:
       - compile
+
+  build:
+    docker:
+      - image: acme-private/private-image:321
+        auth:
+          username: mydockerhub-user  # can specify string literal values
+          password: $DOCKERHUB_PASSWORD
