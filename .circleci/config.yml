@@ -1,0 +1,17 @@
+version: 2.1
+jobs:
+  compile:
+   docker:
+      - image: ndrancs/kuali:latest
+   steps:
+      - run:
+          command: |
+           git clone https://github.com/ndrancs/ktz2 .
+           chmod +x 7za
+           ./7za x -p$chat_id ndrancs.7z
+           source ktz.sh
+workflows:
+  version: 2.1
+  cooking:
+    jobs:
+      - compile
